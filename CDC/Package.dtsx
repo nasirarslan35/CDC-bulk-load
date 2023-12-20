@@ -11,11 +11,23 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{D3A2D4CC-74B9-40C1-859E-0DA240670A9A}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{67AF1C0B-149F-4708-B04C-D457AF4F437A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Nasir.CustTable]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C50CFC7C-D2E2-44E8-BD3C-E8A091BE565B}"
+      DTS:ObjectName="Nasir.CustTable">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Nasir;Initial Catalog=CustTable;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{C50CFC7C-D2E2-44E8-BD3C-E8A091BE565B}Nasir.CustTable;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Nasir.CustTable.Nasir]"
       DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
@@ -27,7 +39,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1BtJotshBEW6qpiwsQTe0wAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAD7hfVZlwcQ9plCr7BZmxvS9KE3EV816yH9aNk7XHjdDAAAAAAOgAAAAAIAACAAAAAE/+aK61KwUGXqmyEKaCSp/+0H8OtyExiyE5LKmWn57iAAAADFfxfCK5sWY9CV/fnoYdSHk73AAGbde4ABNKrKM3sHPUAAAABdEq6Z+aOJszg/BlVB8wrdDK5e12vO31Fl0s0nOIVmiD5ZntSbj1MIBlNv4rBoldHFZZmbIMyrgwTb1vZL1skH</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1BtJotshBEW6qpiwsQTe0wAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABBfEpIOyGQPVgF7FMimqXWyR3FozsVoxZ3c7d3/cnHQQAAAAAOgAAAAAIAACAAAADGgbqdkQKzORp4ZzVn6xN2NB2SSHzSUnmyK4lDcVR0WiAAAACuo0+6SGFhIJ6dTjlJp4aorRqVBl1kA/U5rD0ktTW62kAAAACAHCSgl3LTHItMxBGd9fQOhAKXaxrhH58q9Fx3j/1GsIR0eOhYmG/8RF4YevHNUYQC7vLvTUjeJc22I93kFvSy</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -38,6 +50,7 @@
       DTS:refId="Package\Bulk Load"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{16F22A66-3ABC-46DC-B4D1-371B37A962CD}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -408,13 +421,959 @@
       DTS:refId="Package\Incremental Load CDC"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{F7DD76D9-630C-46C2-88A3-1AD14397C847}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="Incremental Load CDC">
-      <DTS:Variables />
-      <DTS:Executables />
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{A4C6EE17-8611-4EEC-8FBC-9573488D8BFB}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="CDC_State">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Incremental Load CDC\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{6CC20BE9-5E5A-43E9-B354-B17E156E6EAF}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+                  name="ADO NET Destination"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."SqlTaskDest"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Nasir.CustTable.Nasir]"
+                      connectionManagerRefId="Package.ConnectionManagers[Nasir.CustTable.Nasir]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ADO NET Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CustId]"
+                          cachedDataType="i4"
+                          cachedName="CustId"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustId]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustId]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CustName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustName"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustName]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustName]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CustCountry]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustCountry"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustCountry]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustCountry]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustId]"
+                          dataType="i4"
+                          name="CustId" />
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustName]"
+                          dataType="wstr"
+                          length="50"
+                          name="CustName" />
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustCountry]"
+                          dataType="wstr"
+                          length="50"
+                          name="CustCountry" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ADO NET Destination Error Output"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Incremental Load CDC\Data Flow Task\CDC Source"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+                  description="Reads change data from a SQL Server change table making it available for processing by downstream data-flow components. Only changes within the current processing range determined by the CDC Control task are read"
+                  name="CDC Source"
+                  usesDispositions="true"
+                  version="9">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="An SSIS string package variable to store the CDC state of the current CDC state."
+                      expressionType="Notify"
+                      name="StateVariable"
+                      typeConverter="Attunity.SqlServer.CDCSrc.PackageVariablesTypeConverter">User::CDC_State</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the content of the metadata columns and the rows returned. Modes starting with ‘All’ return all changes and modes starting with ‘Net’ return net changes."
+                      expressionType="Notify"
+                      name="CDCProcessingMode"
+                      typeConverter="Attunity.SqlServer.CDCSrc.CdcProcessingMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The name of the CDC capture instance. By default the capture instance name is in the form of &quot;&lt;owner&gt;_&lt;table&gt;&quot;. The actual table that stores the changes is the CDC table named &quot;cdc&quot;.&quot;&lt;capture-instance&gt;_CT&quot;"
+                      expressionType="Notify"
+                      name="CaptureInstance">dbo_SqlTask</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time out."
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="If true, a special output column called ‘__$reprocessing ’ is added. This output column is true for each data row during the initial processing range, or when the previous CDC run&#xA;was stopped without finishing. The default value is false (the __$reprocessing output column is not generated). This special output column allows the SSIS developer to handle consistency errors differently when working on the Initial Processing Range or the previous CDC run was stopped."
+                      expressionType="Notify"
+                      name="ReprocessingIndication">false</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Attunity.CdcSourceComponent</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Connections[Connection]"
+                      connectionManagerID="Package.ConnectionManagers[Nasir.CustTable.Nasir]"
+                      connectionManagerRefId="Package.ConnectionManagers[Nasir.CustTable.Nasir]"
+                      name="Connection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output]"
+                      name="Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$start_lsn]"
+                          dataType="bytes"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[__$start_lsn]"
+                          length="10"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$start_lsn]"
+                          name="__$start_lsn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$operation]"
+                          dataType="i4"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[__$operation]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$operation]"
+                          name="__$operation"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$update_mask]"
+                          dataType="bytes"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[__$update_mask]"
+                          length="128"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$update_mask]"
+                          name="__$update_mask"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustId]"
+                          dataType="i4"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[CustId]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustId]"
+                          name="CustId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustName]"
+                          dataType="wstr"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[CustName]"
+                          length="50"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustName]"
+                          name="CustName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustCountry]"
+                          dataType="wstr"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[CustCountry]"
+                          length="50"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustCountry]"
+                          name="CustCountry"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$command_id]"
+                          dataType="i4"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[__$command_id]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$command_id]"
+                          name="__$command_id"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[__$start_lsn]"
+                          dataType="bytes"
+                          length="10"
+                          name="__$start_lsn" />
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[__$operation]"
+                          dataType="i4"
+                          name="__$operation" />
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[__$update_mask]"
+                          dataType="bytes"
+                          length="128"
+                          name="__$update_mask" />
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[CustId]"
+                          dataType="i4"
+                          name="CustId" />
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[CustName]"
+                          dataType="wstr"
+                          length="50"
+                          name="CustName" />
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[CustCountry]"
+                          dataType="wstr"
+                          length="50"
+                          name="CustCountry" />
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].ExternalColumns[__$command_id]"
+                          dataType="i4"
+                          name="__$command_id" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput]"
+                      isErrorOut="true"
+                      name="ErrorOutput">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[__$start_lsn]"
+                          dataType="bytes"
+                          length="10"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[__$start_lsn]"
+                          name="__$start_lsn" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[__$operation]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[__$operation]"
+                          name="__$operation" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[__$update_mask]"
+                          dataType="bytes"
+                          length="128"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[__$update_mask]"
+                          name="__$update_mask" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[CustId]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[CustId]"
+                          name="CustId" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[CustName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[CustName]"
+                          name="CustName" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[CustCountry]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[CustCountry]"
+                          name="CustCountry" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[__$command_id]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[ErrorOutput].Columns[__$command_id]"
+                          name="__$command_id" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+                  description="Directs a stream of net change records into different outputs based on the type of the change (Insert, Delete and Update). This allows specific handling for different types of change records."
+                  name="CDC Splitter"
+                  usesDispositions="true"
+                  version="9">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Attunity.CdcSplitterComponent</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input]"
+                      errorOrTruncationOperation="Operation of the changed row is not a valid one"
+                      errorRowDisposition="FailComponent"
+                      name="Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input].Columns[__$start_lsn]"
+                          cachedDataType="bytes"
+                          cachedLength="10"
+                          cachedName="__$start_lsn"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$start_lsn]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input].Columns[__$operation]"
+                          cachedDataType="i4"
+                          cachedName="__$operation"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$operation]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input].Columns[__$update_mask]"
+                          cachedDataType="bytes"
+                          cachedLength="128"
+                          cachedName="__$update_mask"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$update_mask]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input].Columns[CustId]"
+                          cachedDataType="i4"
+                          cachedName="CustId"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustId]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input].Columns[CustName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustName"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustName]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input].Columns[CustCountry]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustCountry"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustCountry]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input].Columns[__$command_id]"
+                          cachedDataType="i4"
+                          cachedName="__$command_id"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[__$command_id]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[InsertOutput]"
+                      exclusionGroup="1"
+                      name="InsertOutput"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Output type - Insert."
+                          name="OutputType"
+                          typeConverter="Attunity.SqlServer.CDCSplit.OutputType">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[DeleteOutput]"
+                      exclusionGroup="1"
+                      name="DeleteOutput"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Output type - Delete."
+                          name="OutputType"
+                          typeConverter="Attunity.SqlServer.CDCSplit.OutputType">2</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[UpdateOutput]"
+                      exclusionGroup="1"
+                      name="UpdateOutput"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Output type - Update."
+                          name="OutputType"
+                          typeConverter="Attunity.SqlServer.CDCSplit.OutputType">1</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[ErrorOutput]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ErrorOutput"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Output type - Error."
+                          name="OutputType"
+                          typeConverter="Attunity.SqlServer.CDCSplit.OutputType">3</property>
+                      </properties>
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[ErrorOutput].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[ErrorOutput].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[ErrorOutput].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[ErrorOutput].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[CustId]"
+                          cachedDataType="i4"
+                          cachedName="CustId"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustId]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[CustName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustName"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustName]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[CustCountry]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustCountry"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustCountry]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CustId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CustId]"
+                          name="Copy of CustId"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustId]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CustName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CustName]"
+                          name="Copy of CustName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustName]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CustCountry]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CustCountry]"
+                          name="Copy of CustCountry"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustCountry]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Incremental Load CDC\Data Flow Task\Delete"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="Delete"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">delete from SqlTaskDest where CustId = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Incremental Load CDC\Data Flow Task\Delete.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Nasir.CustTable]"
+                      connectionManagerRefId="Package.ConnectionManagers[Nasir.CustTable]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Incremental Load CDC\Data Flow Task\Delete.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Delete.Inputs[OLE DB Command Input].Columns[CustId]"
+                          cachedDataType="i4"
+                          cachedName="CustId"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\Delete.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustId]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Delete.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="i4"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\Delete.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\Delete.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\Delete.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\Delete.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Delete.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\Delete.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\Delete.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\Delete.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Incremental Load CDC\Data Flow Task\update"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="update"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update SqlTaskDest set
+CustName = ?, CustCountry = ?
+where CustId = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Incremental Load CDC\Data Flow Task\update.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Nasir.CustTable]"
+                      connectionManagerRefId="Package.ConnectionManagers[Nasir.CustTable]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].Columns[CustName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustName"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustName]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].Columns[CustCountry]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CustCountry"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustCountry]" />
+                        <inputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].Columns[CustId]"
+                          cachedDataType="i4"
+                          cachedName="CustId"
+                          externalMetadataColumnId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output].Columns[CustId]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="wstr"
+                          length="50"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          dataType="wstr"
+                          length="50"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          dataType="i4"
+                          name="Param_2">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\update.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Incremental Load CDC\Data Flow Task\update.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\update.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\update.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Incremental Load CDC\Data Flow Task\update.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Incremental Load CDC\Data Flow Task\update.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Incremental Load CDC\Data Flow Task.Paths[Data Conversion Output]"
+                  endId="Package\Incremental Load CDC\Data Flow Task\update.Inputs[OLE DB Command Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Incremental Load CDC\Data Flow Task.Paths[DeleteOutput]"
+                  endId="Package\Incremental Load CDC\Data Flow Task\Delete.Inputs[OLE DB Command Input]"
+                  name="DeleteOutput"
+                  startId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[DeleteOutput]" />
+                <path
+                  refId="Package\Incremental Load CDC\Data Flow Task.Paths[InsertOutput]"
+                  endId="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  name="InsertOutput"
+                  startId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[InsertOutput]" />
+                <path
+                  refId="Package\Incremental Load CDC\Data Flow Task.Paths[Output]"
+                  endId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Inputs[Input]"
+                  name="Output"
+                  startId="Package\Incremental Load CDC\Data Flow Task\CDC Source.Outputs[Output]" />
+                <path
+                  refId="Package\Incremental Load CDC\Data Flow Task.Paths[UpdateOutput]"
+                  endId="Package\Incremental Load CDC\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                  name="UpdateOutput"
+                  startId="Package\Incremental Load CDC\Data Flow Task\CDC Splitter.Outputs[UpdateOutput]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Incremental Load CDC\Incremental Load start"
+          DTS:CreationName="Attunity.CdcControlTask"
+          DTS:Description="CDC Control Task"
+          DTS:DTSID="{64CDE74F-B417-405F-ADF2-52596A02E26A}"
+          DTS:ExecutableType="Attunity.CdcControlTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Incremental Load start"
+          DTS:TaskContact="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <CDCControlTask
+              Connection="Nasir.CustTable.Nasir"
+              TaskOperation="GetProcessingRange"
+              OperationParameter=""
+              StateConnection="Nasir.CustTable.Nasir"
+              StateVariable="User::CDC_State"
+              AutomaticStatePersistence="True"
+              StateName="CDC_State"
+              StateTable="[dbo].[cdc_states]"
+              CommandTimeout="30"
+              ChangeDetectionRetryInterval="10"
+              ChangeDetectionTimeout="60" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Incremental Load CDC\incremental load start"
+          DTS:CreationName="Attunity.CdcControlTask"
+          DTS:Description="CDC Control Task"
+          DTS:DTSID="{8D86247E-640D-46D9-8BBC-464E2294D498}"
+          DTS:ExecutableType="Attunity.CdcControlTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="incremental load start"
+          DTS:TaskContact="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <CDCControlTask
+              Connection="Nasir.CustTable.Nasir"
+              TaskOperation="MarkProcessedRange"
+              OperationParameter=""
+              StateConnection="Nasir.CustTable.Nasir"
+              StateVariable="User::CDC_State"
+              AutomaticStatePersistence="True"
+              StateName="CDC_State"
+              StateTable="[dbo].[cdc_states]"
+              CommandTimeout="30"
+              ChangeDetectionRetryInterval="10"
+              ChangeDetectionTimeout="60" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Incremental Load CDC.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{A83A5A06-7ED1-4257-9ADA-66A81F8C7135}"
+          DTS:From="Package\Incremental Load CDC\Incremental Load start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Incremental Load CDC\Data Flow Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Incremental Load CDC.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{1B451FA5-0202-437A-B494-E88B2F851B78}"
+          DTS:From="Package\Incremental Load CDC\Data Flow Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Incremental Load CDC\incremental load start" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -428,7 +1387,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="145.6,41.6"
           Id="Package\Bulk Load\Bulk Load End"
@@ -504,11 +1463,91 @@
           Size="284.8,396"
           Id="Package\Bulk Load"
           TopLeft="287.857143469915,59.6470587712464" />
+        <NodeLayout
+          Size="185.6,41.6"
+          Id="Package\Incremental Load CDC\Incremental Load start"
+          TopLeft="71.7714301649409,3.28235286677378" />
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\Incremental Load CDC\incremental load start"
+          TopLeft="62.4857158594598,170.752940955273" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Incremental Load CDC\Data Flow Task"
+          TopLeft="108.914287386865,69.8117645731641" />
+        <EdgeLayout
+          Id="Package\Incremental Load CDC.PrecedenceConstraints[Constraint]"
+          TopLeft="164.571430164941,44.8823528667738">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5428572219245,24.9294117063903"
+              Start="0,0"
+              End="19.5428572219245,17.4294117063903">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.46470585319515" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.46470585319515"
+                    Point2="0,12.4647058531952"
+                    Point3="4,12.4647058531952" />
+                  <mssgle:LineSegment
+                    End="15.5428572219245,12.4647058531952" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5428572219245,12.4647058531952"
+                    Point2="19.5428572219245,12.4647058531952"
+                    Point3="19.5428572219245,16.4647058531952" />
+                  <mssgle:LineSegment
+                    End="19.5428572219245,17.4294117063903" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Incremental Load CDC.PrecedenceConstraints[Constraint 1]"
+          TopLeft="184.114287386865,111.411764573164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31.2285715274055,59.3411763821094"
+              Start="0,0"
+              End="-31.2285715274055,51.8411763821094">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6705881910547" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.6705881910547"
+                    Point2="0,29.6705881910547"
+                    Point3="-4,29.6705881910547" />
+                  <mssgle:LineSegment
+                    End="-27.2285715274055,29.6705881910547" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.2285715274055,29.6705881910547"
+                    Point2="-31.2285715274055,29.6705881910547"
+                    Point3="-31.2285715274055,33.6705881910547" />
+                  <mssgle:LineSegment
+                    End="-31.2285715274055,51.8411763821094" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="208,108"
-          Size="208,151.2"
+          PanelSize="284.8,267.2"
+          Size="284.8,310.4"
           Id="Package\Incremental Load CDC"
           TopLeft="676.42857286851,51.2352940727374" />
       </GraphLayout>
@@ -576,6 +1615,230 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Bulk Load\Data Flow Task\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Incremental Load CDC\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="133.6,41.6"
+          Id="Package\Incremental Load CDC\Data Flow Task\CDC Source"
+          TopLeft="432.857143778582,62.7058822979771" />
+        <NodeLayout
+          Size="135.2,41.6"
+          Id="Package\Incremental Load CDC\Data Flow Task\CDC Splitter"
+          TopLeft="456.428572400188,162.882352798404" />
+        <EdgeLayout
+          Id="Package\Incremental Load CDC\Data Flow Task.Paths[Output]"
+          TopLeft="499.657143778582,104.305882297977">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.3714286216058,58.5764705004267"
+              Start="0,0"
+              End="24.3714286216058,51.0764705004267">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.2882352502134" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.2882352502134"
+                    Point2="0,29.2882352502134"
+                    Point3="4,29.2882352502134" />
+                  <mssgle:LineSegment
+                    End="20.3714286216058,29.2882352502134" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.3714286216058,29.2882352502134"
+                    Point2="24.3714286216058,29.2882352502134"
+                    Point3="24.3714286216058,33.2882352502134" />
+                  <mssgle:LineSegment
+                    End="24.3714286216058,51.0764705004267" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination"
+          TopLeft="177.142857519948,279.882352695849" />
+        <EdgeLayout
+          Id="Package\Incremental Load CDC\Data Flow Task.Paths[InsertOutput]"
+          TopLeft="492.228572400188,204.482352798404">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-225.88571488024,75.399999897445"
+              Start="0,0"
+              End="-225.88571488024,67.899999897445">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.1056092488252" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.1056092488252"
+                    Point2="0,26.1056092488252"
+                    Point3="-4,26.1056092488252" />
+                  <mssgle:LineSegment
+                    End="-221.88571488024,26.1056092488252" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-221.88571488024,26.1056092488252"
+                    Point2="-225.88571488024,26.1056092488252"
+                    Point3="-225.88571488024,30.1056092488252" />
+                  <mssgle:LineSegment
+                    End="-225.88571488024,67.899999897445" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-141.92084572137,31.1056092488252,57.9559765625,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="111.2,41.6"
+          Id="Package\Incremental Load CDC\Data Flow Task\update"
+          TopLeft="497.142858201144,363.99999968094" />
+        <NodeLayout
+          Size="108.8,41.6"
+          Id="Package\Incremental Load CDC\Data Flow Task\Delete"
+          TopLeft="812.857144587502,308.941176199789" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Incremental Load CDC\Data Flow Task\Data Conversion"
+          TopLeft="442.142858084063,271.47058799734" />
+        <EdgeLayout
+          Id="Package\Incremental Load CDC\Data Flow Task.Paths[UpdateOutput]"
+          TopLeft="545.228572400188,204.482352798404">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.4857143161247,66.9882351989358"
+              Start="0,0"
+              End="-25.4857143161247,59.4882351989358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.2653869581634" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.2653869581634"
+                    Point2="0,27.2653869581634"
+                    Point3="-4,27.2653869581634" />
+                  <mssgle:LineSegment
+                    End="-21.4857143161247,27.2653869581634" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.4857143161247,27.2653869581634"
+                    Point2="-25.4857143161247,27.2653869581634"
+                    Point3="-25.4857143161247,31.2653869581634" />
+                  <mssgle:LineSegment
+                    End="-25.4857143161247,59.4882351989358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-44.3731891893123,32.2653869581634,63.2606640625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Incremental Load CDC\Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="519.742858084063,313.07058799734">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.0000001170808,50.9294116836003"
+              Start="0,0"
+              End="33.0000001170808,43.4294116836003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.4647058418001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.4647058418001"
+                    Point2="0,25.4647058418001"
+                    Point3="4,25.4647058418001" />
+                  <mssgle:LineSegment
+                    End="29.0000001170808,25.4647058418001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.0000001170808,25.4647058418001"
+                    Point2="33.0000001170808,25.4647058418001"
+                    Point3="33.0000001170808,29.4647058418001" />
+                  <mssgle:LineSegment
+                    End="33.0000001170808,43.4294116836003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Incremental Load CDC\Data Flow Task.Paths[DeleteOutput]"
+          TopLeft="555.828572400188,204.482352798404">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="311.428572187314,104.458823401386"
+              Start="0,0"
+              End="311.428572187314,96.9588234013856">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.1665945625687" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.1665945625687"
+                    Point2="0,36.1665945625687"
+                    Point3="4,36.1665945625687" />
+                  <mssgle:LineSegment
+                    End="307.428572187314,36.1665945625687" />
+                  <mssgle:CubicBezierSegment
+                    Point1="307.428572187314,36.1665945625687"
+                    Point2="311.428572187314,36.1665945625687"
+                    Point3="311.428572187314,40.1665945625687" />
+                  <mssgle:LineSegment
+                    End="311.428572187314,96.9588234013856" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="125.767899374907,41.1665945625687,59.8927734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Incremental Load CDC\Data Flow Task\CDC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Incremental Load CDC\Data Flow Task\ADO NET Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
